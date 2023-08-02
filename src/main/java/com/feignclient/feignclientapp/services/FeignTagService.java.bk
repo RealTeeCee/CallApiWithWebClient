@@ -1,0 +1,20 @@
+package com.feignclient.feignclientapp.services;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.feignclient.feignclientapp.model.BaseDto;
+import com.feignclient.feignclientapp.model.TagDto;
+
+@FeignClient(name = "swagger-codegen-app", url = "http://localhost:8080")
+public interface FeignTagService {
+    @GetMapping(value = "/tag")
+    public List<TagDto> findAll();
+
+    @PostMapping(value = "/tag")
+    public BaseDto create(@RequestBody TagDto tagDto);
+}
